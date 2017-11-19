@@ -1,0 +1,86 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.tc.by/oldcards"
+        xmlns:tns="http://www.tc.by/oldcards">
+
+    <element name="oldcards">
+        <complexType>
+            <sequence>
+                <element name="card" type="tns:Card" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Card">
+        <sequence>
+            <element name="country" type="string"/>
+            <element name="year" type="tns:CardYear"/>
+            <element name="authors" type="tns:Authors" minOccurs="0" maxOccurs="1"/>
+            <element name="theme" type="tns:Theme"/>
+            <element name="valuable" type="tns:Valuable"/>
+            <element name="type" type="tns:Type"/>
+        </sequence>
+        <attribute name="id" type="ID"/>
+        <attribute name="isSent" type="boolean" default="false"/>
+    </complexType>
+
+
+
+
+    <simpleType name="Name">
+        <restriction base="string">
+            <pattern value="[A-Z][a-z]+"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Person">
+        <sequence>
+            <element name="name" type="tns:Name"/>
+            <element name="surname" type="tns:Name"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Authors">
+        <sequence>
+            <element name="author" type="tns:Person" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="isKnown" type="boolean" use="optional" default="true"/>
+    </complexType>
+
+
+
+
+    <simpleType name="CardYear">
+        <restriction base="gYear">
+            <minInclusive value="1880"/>
+            <maxInclusive value="2017"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Theme">
+        <restriction base="string">
+            <enumeration value="City"/>
+            <enumeration value="Nature"/>
+            <enumeration value="People"/>
+            <enumeration value="Religion"/>
+            <enumeration value="Sport"/>
+            <enumeration value="Architecture"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Valuable">
+        <restriction base="string">
+            <enumeration value="Historical"/>
+            <enumeration value="Collectible"/>
+            <enumeration value="Thematic"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Type">
+        <restriction base="string">
+            <enumeration value="Congratulatory"/>
+            <enumeration value="Promotional"/>
+            <enumeration value="Ordinary"/>
+        </restriction>
+    </simpleType>
+
+</schema>
