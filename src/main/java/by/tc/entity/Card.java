@@ -1,6 +1,8 @@
 package by.tc.entity;
 
 import by.tc.entity.enums.Theme;
+import by.tc.entity.enums.Type;
+import by.tc.entity.enums.Valuable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +16,8 @@ public class Card implements Serializable {
     private int year;
     private List<Author> authors = new ArrayList<>();
     private Theme theme;
-    private String valuable;
-    private String type;
+    private Valuable valuable;
+    private Type type;
 
     public Card() {
     }
@@ -68,19 +70,55 @@ public class Card implements Serializable {
         this.theme = theme;
     }
 
-    public String getValuable() {
+    public Valuable getValuable() {
         return valuable;
     }
 
-    public void setValuable(String valuable) {
+    public void setValuable(Valuable valuable) {
         this.valuable = valuable;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+
+        Card card = (Card) o;
+
+        if (isSent != card.isSent) { return false; }
+        if (year != card.year) { return false; }
+        if (id != null ? !id.equals(card.id) : card.id != null) { return false; }
+        if (country != null ? !country.equals(card.country) : card.country != null) { return false; }
+        if (authors != null ? !authors.equals(card.authors) : card.authors != null) { return false; }
+        if (theme != card.theme) { return false; }
+        if (valuable != card.valuable) { return false; }
+        return type == card.type;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (isSent ? 1 : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + year;
+        result = 31 * result + (authors != null ? authors.hashCode() : 0);
+        result = 31 * result + (theme != null ? theme.hashCode() : 0);
+        result = 31 * result + (valuable != null ? valuable.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "[id=" + id + ", isSent=" + isSent + ", country=" + country + ", year=" + year
+                + ", authors=" + authors + ", theme=" + theme + ", valuable=" + valuable + ", type=" + type + ']';
     }
 }
