@@ -73,7 +73,7 @@ public class CardsStAXBuilder implements CardsBuilder {
                 currentCard = new Card();
                 currentCard.setId(reader.getAttributeValue("", "id"));
                 if (reader.getAttributeCount() == 2) {
-                    currentCard.setSent(Boolean.parseBoolean(reader.getAttributeValue("", "isSent")));
+                    currentCard.setWasSent(Boolean.parseBoolean(reader.getAttributeValue("", "isSent")));
                 }
                 break;
             case AUTHORS:

@@ -16,7 +16,7 @@ public final class CardsBuilderProvider {
             builders.put("DOM", CardsBuilderFactory.getInstance().getDOMBuilder());
     }
 
-    public static CardsBuilder getParser(String type) throws ServiceException {
+    public static CardsBuilder getBuilder(String type) throws ServiceException {
         CardsBuilder builder = builders.get(type);
         if (builder == null) {
             throw new ServiceException("Incorrect parser type");

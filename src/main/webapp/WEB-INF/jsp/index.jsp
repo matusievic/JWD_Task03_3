@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Xml Parser</title>
+    <title>Main - XML Parser</title>
 </head>
 <body>
 <form action="/controller" method="get">

@@ -1,6 +1,7 @@
 package by.tc.controller;
 
 import by.tc.controller.exception.ControllerException;
+import by.tc.controller.impl.DisplayCommand;
 import by.tc.controller.impl.ParseCommand;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ public final class CommandProvider {
 
     static {
         commands.put(ControllerCommand.PARSE, new ParseCommand());
+        commands.put(ControllerCommand.DISPLAY, new DisplayCommand());
     }
 
     public static XMLCommand getCommand(String name) throws ControllerException {

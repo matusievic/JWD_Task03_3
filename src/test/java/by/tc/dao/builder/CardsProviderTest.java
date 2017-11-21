@@ -27,7 +27,7 @@ class CardsProviderTest {
         //CARD #1
         Card card = new Card();
         card.setId("ID-0");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Belarus");
         card.setYear(1993);
         List<Author> authors = new ArrayList<>();
@@ -45,7 +45,7 @@ class CardsProviderTest {
         //CARD #2
         card = new Card();
         card.setId("ID-1");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Lithuania");
         card.setYear(2003);
         card.setAuthors(new ArrayList<Author>());
@@ -58,7 +58,7 @@ class CardsProviderTest {
         //CARD #3
         card = new Card();
         card.setId("ID-2");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Finland");
         card.setYear(1998);
         authors = new ArrayList<>();
@@ -76,7 +76,7 @@ class CardsProviderTest {
         //CARD #4
         card = new Card();
         card.setId("ID-3");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Belarus");
         card.setYear(2008);
         authors = new ArrayList<>();
@@ -94,7 +94,7 @@ class CardsProviderTest {
         //CARD #5
         card = new Card();
         card.setId("ID-4");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("UK");
         card.setYear(2003);
         authors = new ArrayList<>();
@@ -112,7 +112,7 @@ class CardsProviderTest {
         //CARD #6
         card = new Card();
         card.setId("ID-5");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Poland");
         card.setYear(2012);
         authors = new ArrayList<>();
@@ -130,7 +130,7 @@ class CardsProviderTest {
         //CARD #7
         card = new Card();
         card.setId("ID-6");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("USA");
         card.setYear(1992);
         authors = new ArrayList<>();
@@ -148,7 +148,7 @@ class CardsProviderTest {
         //CARD #8
         card = new Card();
         card.setId("ID-7");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("BSSR");
         card.setYear(1932);
         authors = new ArrayList<>();
@@ -166,7 +166,7 @@ class CardsProviderTest {
         //CARD #9
         card = new Card();
         card.setId("ID-8");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Latvia");
         card.setYear(2001);
         authors = new ArrayList<>();
@@ -184,7 +184,7 @@ class CardsProviderTest {
         //CARD #10
         card = new Card();
         card.setId("ID-9");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Norway");
         card.setYear(1901);
         authors = new ArrayList<>();
@@ -202,7 +202,7 @@ class CardsProviderTest {
         //CARD #11
         card = new Card();
         card.setId("ID-10");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Belarus");
         card.setYear(1992);
         authors = new ArrayList<>();
@@ -220,7 +220,7 @@ class CardsProviderTest {
         //CARD #12
         card = new Card();
         card.setId("ID-11");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("BSSR");
         card.setYear(1927);
         authors = new ArrayList<>();
@@ -238,7 +238,7 @@ class CardsProviderTest {
         //CARD #13
         card = new Card();
         card.setId("ID-12");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Estonia");
         card.setYear(2000);
         authors = new ArrayList<>();
@@ -256,7 +256,7 @@ class CardsProviderTest {
         //CARD #14
         card = new Card();
         card.setId("ID-13");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("BSSR");
         card.setYear(1955);
         authors = new ArrayList<>();
@@ -274,7 +274,7 @@ class CardsProviderTest {
         //CARD #15
         card = new Card();
         card.setId("ID-14");
-        card.setSent(false);
+        card.setWasSent(false);
         card.setCountry("Germany");
         card.setYear(2009);
         authors = new ArrayList<>();
@@ -292,7 +292,7 @@ class CardsProviderTest {
         //CARD #16
         card = new Card();
         card.setId("ID-15");
-        card.setSent(true);
+        card.setWasSent(true);
         card.setCountry("Belarus");
         card.setYear(2012);
         authors = new ArrayList<>();

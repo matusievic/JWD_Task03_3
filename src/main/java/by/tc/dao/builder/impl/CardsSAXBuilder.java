@@ -87,7 +87,7 @@ public class CardsSAXBuilder implements CardsBuilder {
                     currentCard = new Card();
                     currentCard.setId(attributes.getValue("id"));
                     if (attributes.getLength() == 2) {
-                        currentCard.setSent(Boolean.parseBoolean(attributes.getValue("isSent")));
+                        currentCard.setWasSent(Boolean.parseBoolean(attributes.getValue("isSent")));
                     }
                     break;
                 case AUTHORS:

@@ -51,7 +51,7 @@ public class CardsDOMBuilder implements CardsBuilder {
             Element currentElement = (Element) nodes.item(i);
             card.setId(currentElement.getAttribute("id"));
             logger.log(Level.INFO, "Card -> id read");
-            card.setSent(Boolean.parseBoolean(currentElement.getAttribute("isSent")));
+            card.setWasSent(Boolean.parseBoolean(currentElement.getAttribute("isSent")));
             logger.log(Level.INFO, "Card -> isSent read");
             card.setCountry(getSingleChildValue(currentElement, "country"));
             logger.log(Level.INFO, "Card -> country read");
