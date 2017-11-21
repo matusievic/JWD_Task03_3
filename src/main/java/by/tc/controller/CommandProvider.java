@@ -1,6 +1,6 @@
 package by.tc.controller;
 
-import by.tc.controller.exception.ControllerException;
+import by.tc.controller.exception.InternalServerException;
 import by.tc.controller.impl.DisplayCommand;
 import by.tc.controller.impl.ParseCommand;
 
@@ -15,13 +15,13 @@ public final class CommandProvider {
         commands.put(ControllerCommand.DISPLAY, new DisplayCommand());
     }
 
-    public static XMLCommand getCommand(String name) throws ControllerException {
+    public static XMLCommand getCommand(String name) throws InternalServerException {
         XMLCommand command;
 
         try {
             command = commands.get(ControllerCommand.valueOf(name));
         } catch (Exception e) {
-            throw new ControllerException(e);
+            throw new InternalServerException(e);
         }
 
         return command;

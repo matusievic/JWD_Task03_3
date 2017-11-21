@@ -1,7 +1,8 @@
 package by.tc.controller.impl;
 
 import by.tc.controller.XMLCommand;
-import by.tc.controller.exception.ControllerException;
+import by.tc.controller.exception.InternalServerException;
+import by.tc.controller.exception.NotFoundException;
 import by.tc.entity.Card;
 import by.tc.service.XMLServiceFactory;
 
@@ -16,16 +17,19 @@ public class DisplayCommand implements XMLCommand {
     private static final String pageParam = "page";
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ControllerException, ServletException, IOException {
-        int currentPage = 0;
+    public void execute(HttpServletRequest req, HttpServletResponse resp) throws InternalServerException, ServletException, IOException, NotFoundException {
+        int currentPage = 1;
         String pageParamValue = req.getParameter(pageParam);
         if (pageParamValue != null) {
-            currentPage = Integer.getInteger(pageParamValue);
+            try {
+                currentPage = Integer.parseInt(pageParamValue);
+            } catch (NumberFormatException e) {
+                throw new NotFoundException("There's no such page on the website");
+            }
         }
 
-        List<Card> currentCards = XMLServiceFactory.getInstance().getXmlService().parse(5, currentPage);
+        List<Card> currentCards = XMLServiceFactory.getInstance().getXmlService().getPageRecords(5, currentPage);
 
-        System.out.println(currentCards);
         req.setAttribute("cardList", currentCards);
         req.setAttribute("currentPage", currentPage);
         req.setAttribute("pageCount", XMLServiceFactory.getInstance().getXmlService().getPageCount(recordsPerPage));

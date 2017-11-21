@@ -1,6 +1,5 @@
 package by.tc.service.impl;
 
-import by.tc.dao.builder.CardsBuilderFactory;
 import by.tc.dao.CardsProvider;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Card;
@@ -23,8 +22,8 @@ public class XMLServiceImpl implements XMLService {
     }
 
     @Override
-    public List<Card> parse(int recordsPerPage, int currentPage) {
-        return cards.subList(recordsPerPage * currentPage, (currentPage + 1) * recordsPerPage);
+    public List<Card> getPageRecords(int recordsPerPage, int currentPage) {
+        return cards.subList(recordsPerPage * (currentPage - 1), (currentPage * recordsPerPage > cards.size())? cards.size(): (currentPage * recordsPerPage));
     }
 
     @Override

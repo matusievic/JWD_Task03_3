@@ -5,7 +5,7 @@
     <title>Result - XML parser</title>
 </head>
 <body>
-<table>
+<table border="1" cellpadding="5" cellspacing="5">
     <tr>
         <td>id</td>
         <td>is wasSent</td>
@@ -35,5 +35,34 @@
         </tr>
     </c:forEach>
 </table>
+
+<%--Display Previous link--%>
+<c:if test="${currentPage != 1}">
+    <td><a href="/controller?page=${currentPage - 1}&command=DISPLAY">Previous</a></td>
+</c:if>
+
+<%--Display numbers--%>
+<table border="1" cellpadding="5" cellspacing="5">
+    <tr>
+        <c:forEach begin="1" end="${pageCount + 1}" var="i">
+            <c:choose>
+                <c:when test="${currentPage eq i}">
+                    <td>${i}</td>
+                </c:when>
+                <c:otherwise>
+                    <td><a href="/controller?page=${i}&command=DISPLAY">${i}</a></td>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </tr>
+</table>
+
+<%--Display Next link--%>
+<c:if test="${currentPage lt pageCount + 1}">
+    <td><a href="/controller?page=${currentPage + 1}&command=DISPLAY">Next</a></td>
+</c:if>
+
+<br><br>
+<a href="/">Go back</a>
 </body>
 </html>

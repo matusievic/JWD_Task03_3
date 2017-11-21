@@ -1,5 +1,6 @@
 package by.tc.dao.builder;
 
+import by.tc.dao.builder.impl.CardsDOMBuilder;
 import by.tc.dao.builder.impl.CardsSAXBuilder;
 import by.tc.dao.builder.impl.CardsStAXBuilder;
 
@@ -22,6 +23,6 @@ public final class CardsBuilderFactory {
     }
 
     public CardsBuilder getDOMBuilder() {
-        return null;
+        return new CardsDOMBuilder();
     }
 }
