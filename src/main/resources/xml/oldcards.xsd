@@ -19,7 +19,7 @@
             <element name="valuable" type="tns:Valuable"/>
             <element name="type" type="tns:Type"/>
         </sequence>
-        <attribute name="id" type="ID"/>
+        <attribute name="id" type="ID" use="required"/>
         <attribute name="isSent" type="boolean" default="false"/>
     </complexType>
 
@@ -43,7 +43,7 @@
         <sequence>
             <element name="author" type="tns:Person" minOccurs="1" maxOccurs="unbounded"/>
         </sequence>
-        <attribute name="isKnown" type="boolean" use="optional" default="true"/>
+        <attribute name="isKnown" type="boolean" use="required"/>
     </complexType>
 
 

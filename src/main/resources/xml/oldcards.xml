@@ -6,7 +6,7 @@
     <card id="ID-0">
         <country>Belarus</country>
         <year>1993</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Mikita</name>
                 <surname>Jurevic</surname>
@@ -26,9 +26,9 @@
     <card id="ID-2">
         <country>Finland</country>
         <year>1998</year>
-        <authors>
+        <authors isKnown="true">
             <author>
-                <name>Jonh</name>
+                <name>John</name>
                 <surname>Makarainen</surname>
             </author>
         </authors>
@@ -39,7 +39,7 @@
     <card id="ID-3">
         <country>Belarus</country>
         <year>2008</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Dzmitryj</name>
                 <surname>Kuzmienka</surname>
@@ -66,7 +66,7 @@
     <card id="ID-5">
         <country>Poland</country>
         <year>2012</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Kasia</name>
                 <surname>Wozniak</surname>
@@ -79,7 +79,7 @@
     <card id="ID-6">
         <country>USA</country>
         <year>1992</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>John</name>
                 <surname>Doe</surname>
@@ -92,7 +92,7 @@
     <card id="ID-7">
         <country>BSSR</country>
         <year>1932</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Vasil</name>
                 <surname>Mickievic</surname>
@@ -105,7 +105,7 @@
     <card id="ID-8">
         <country>Latvia</country>
         <year>2001</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Andris</name>
                 <surname>Shnarskis</surname>
@@ -118,7 +118,7 @@
     <card id="ID-9">
         <country>Norway</country>
         <year>1901</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Eric</name>
                 <surname>Bjorndalen</surname>
@@ -131,7 +131,7 @@
     <card id="ID-10">
         <country>Belarus</country>
         <year>1992</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Valiancin</name>
                 <surname>Zakreuski</surname>
@@ -144,7 +144,7 @@
     <card id="ID-11">
         <country>BSSR</country>
         <year>1927</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Jakub</name>
                 <surname>Kolas</surname>
@@ -157,7 +157,7 @@
     <card id="ID-12">
         <country>Estonia</country>
         <year>2000</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Lena</name>
                 <surname>Harma</surname>
@@ -170,7 +170,7 @@
     <card id="ID-13">
         <country>BSSR</country>
         <year>1955</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Kastus</name>
                 <surname>Davydzionak</surname>
@@ -183,7 +183,7 @@
     <card id="ID-14" isSent="false">
         <country>Germany</country>
         <year>2009</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Magdalena</name>
                 <surname>Noiner</surname>
@@ -196,7 +196,7 @@
     <card id="ID-15" isSent="true">
         <country>Belarus</country>
         <year>2012</year>
-        <authors>
+        <authors isKnown="true">
             <author>
                 <name>Anastasia</name>
                 <surname>Dubarezava</surname>

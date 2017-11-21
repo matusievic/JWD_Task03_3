@@ -15,6 +15,7 @@ public class Card implements Serializable {
     private String country;
     private int year;
     private List<Author> authors = new ArrayList<>();
+    private boolean isAuthorKnown;
     private Theme theme;
     private Valuable valuable;
     private Type type;
@@ -60,6 +61,14 @@ public class Card implements Serializable {
 
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
+    }
+
+    public boolean isAuthorKnown() {
+        return isAuthorKnown;
+    }
+
+    public void setAuthorKnown(boolean authorKnown) {
+        isAuthorKnown = authorKnown;
     }
 
     public Theme getTheme() {
