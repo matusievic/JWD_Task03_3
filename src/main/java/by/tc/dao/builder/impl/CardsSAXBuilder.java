@@ -2,7 +2,6 @@ package by.tc.dao.builder.impl;
 
 import by.tc.dao.builder.CardsBuilder;
 import by.tc.dao.exception.DAOException;
-import by.tc.dao.builder.CardParams;
 import by.tc.entity.Author;
 import by.tc.entity.Card;
 import by.tc.entity.enums.Theme;
@@ -22,6 +21,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This is a CardsBuilder class implementation for the SAX parser
+ */
 public class CardsSAXBuilder implements CardsBuilder {
     private List<Card> cards = new ArrayList<>();
     private CardsHandler ch;
@@ -54,6 +56,10 @@ public class CardsSAXBuilder implements CardsBuilder {
         return cards;
     }
 
+
+    /**
+     * This is a nested handler-class for the SAX parser
+     */
     static class CardsHandler extends DefaultHandler {
         private List<Card> cards = new ArrayList<>();
         private Card currentCard;

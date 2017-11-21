@@ -1,8 +1,10 @@
 package by.tc.dao.builder;
 
 import by.tc.dao.builder.impl.CardsSAXBuilder;
-import by.tc.dao.exception.DAOException;
 
+/**
+ * This is a factory class for different CardBuilder implementations
+ */
 public final class CardsBuilderFactory {
     private static final CardsBuilderFactory instance = new CardsBuilderFactory();
 

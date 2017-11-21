@@ -1,7 +1,7 @@
 package by.tc.service.impl;
 
 import by.tc.dao.builder.CardsBuilderFactory;
-import by.tc.dao.builder.CardsProvider;
+import by.tc.dao.CardsProvider;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Card;
 import by.tc.service.XMLService;

@@ -1,5 +1,6 @@
 package by.tc.dao.builder;
 
+import by.tc.dao.CardsProvider;
 import by.tc.dao.builder.impl.CardsSAXBuilder;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Author;
@@ -7,12 +8,9 @@ import by.tc.entity.Card;
 import by.tc.entity.enums.Theme;
 import by.tc.entity.enums.Type;
 import by.tc.entity.enums.Valuable;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLInvalidAuthorizationSpecException;
 import java.util.ArrayList;
 import java.util.List;
 
