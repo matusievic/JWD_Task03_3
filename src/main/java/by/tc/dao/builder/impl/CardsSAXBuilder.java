@@ -92,6 +92,7 @@ public class CardsSAXBuilder implements CardsBuilder {
                     break;
                 case AUTHORS:
                     authors = new ArrayList<>();
+                    currentCard.setAuthorKnown(Boolean.parseBoolean(attributes.getValue("isKnown")));
                     break;
                 case AUTHOR:
                     currentAuthor = new Author();

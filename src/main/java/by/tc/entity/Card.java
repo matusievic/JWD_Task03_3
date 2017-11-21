@@ -96,37 +96,20 @@ public class Card implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+    public boolean equals(Object obj) {
+        if (this == obj) { return true; }
+        if (obj == null || getClass() != obj.getClass()) { return false; }
 
-        Card card = (Card) o;
+        Card card = (Card) obj;
 
-        if (isSent != card.isSent) {
-            return false;
-        }
-        if (year != card.year) {
-            return false;
-        }
-        if (id != null ? !id.equals(card.id) : card.id != null) {
-            return false;
-        }
-        if (country != null ? !country.equals(card.country) : card.country != null) {
-            return false;
-        }
-        if (authors != null ? !authors.equals(card.authors) : card.authors != null) {
-            return false;
-        }
-        if (theme != card.theme) {
-            return false;
-        }
-        if (valuable != card.valuable) {
-            return false;
-        }
+        if (isSent != card.isSent) { return false; }
+        if (year != card.year) { return false; }
+        if (isAuthorKnown != card.isAuthorKnown) { return false; }
+        if (id != null ? !id.equals(card.id) : card.id != null) { return false; }
+        if (country != null ? !country.equals(card.country) : card.country != null) { return false; }
+        if (authors != null ? !authors.equals(card.authors) : card.authors != null) { return false; }
+        if (theme != card.theme) { return false; }
+        if (valuable != card.valuable) { return false; }
         return type == card.type;
     }
 
@@ -137,6 +120,7 @@ public class Card implements Serializable {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + year;
         result = 31 * result + (authors != null ? authors.hashCode() : 0);
+        result = 31 * result + (isAuthorKnown ? 1 : 0);
         result = 31 * result + (theme != null ? theme.hashCode() : 0);
         result = 31 * result + (valuable != null ? valuable.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);

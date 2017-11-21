@@ -1,6 +1,7 @@
 package by.tc.dao.builder;
 
 import by.tc.dao.CardsProvider;
+import by.tc.dao.builder.impl.CardsDOMBuilder;
 import by.tc.dao.builder.impl.CardsSAXBuilder;
 import by.tc.dao.builder.impl.CardsStAXBuilder;
 import by.tc.dao.exception.DAOException;
@@ -19,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CardsProviderTest {
     static List<Card> expected;
-
 
     @BeforeAll
     static void setUp() {
@@ -324,6 +324,17 @@ class CardsProviderTest {
         List<Card> actual = null;
         try {
             actual = CardsProvider.createCards(new CardsStAXBuilder(), "src/main/resources/xml/oldcards.xml");
+        } catch (DAOException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createCardsUsingDOM() {
+        List<Card> actual = null;
+        try {
+            actual = CardsProvider.createCards(new CardsDOMBuilder(), "src/main/resources/xml/oldcards.xml");
         } catch (DAOException e) {
             System.out.println("Exception: " + e.getMessage());
         }

@@ -78,6 +78,7 @@ public class CardsStAXBuilder implements CardsBuilder {
                 break;
             case AUTHORS:
                 authors = new ArrayList<>();
+                currentCard.setAuthorKnown(Boolean.parseBoolean(reader.getAttributeValue("", "isKnown")));
                 break;
             case AUTHOR:
                 currentAuthor = new Author();
