@@ -2,6 +2,7 @@ package by.tc.dao.builder;
 
 import by.tc.dao.CardsProvider;
 import by.tc.dao.builder.impl.CardsSAXBuilder;
+import by.tc.dao.builder.impl.CardsStAXBuilder;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Author;
 import by.tc.entity.Card;
@@ -315,17 +316,17 @@ class CardsProviderTest {
         } catch (DAOException e) {
             System.out.println("Exception: " + e.getMessage());
         }
-
-//        for (int i = 0; i < expected.size(); i++)
-//            for (int j = 0; j < actual.size(); j++) {
-//            if (expected.get(i).equals(actual.get(j)))
-//                expected.remove(i);
-//            }
-
-        //assertEquals(expected, actual);
-        for (int i = 0; i < actual.size(); i++)
-            assertEquals(actual.get(i), expected.get(i));
-
+        assertEquals(expected, actual);
     }
 
+    @Test
+    void createCardsUsingStAX() {
+        List<Card> actual = null;
+        try {
+            actual = CardsProvider.createCards(new CardsStAXBuilder(), "src/main/resources/xml/oldcards.xml");
+        } catch (DAOException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+        assertEquals(expected, actual);
+    }
 }

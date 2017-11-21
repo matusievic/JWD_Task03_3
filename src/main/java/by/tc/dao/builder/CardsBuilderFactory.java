@@ -1,6 +1,7 @@
 package by.tc.dao.builder;
 
 import by.tc.dao.builder.impl.CardsSAXBuilder;
+import by.tc.dao.builder.impl.CardsStAXBuilder;
 
 /**
  * This is a factory class for different CardBuilder implementations
@@ -17,7 +18,7 @@ public final class CardsBuilderFactory {
     }
 
     public CardsBuilder getStAXBuilder() {
-        return null;
+        return new CardsStAXBuilder();
     }
 
     public CardsBuilder getDOMBuilder() {

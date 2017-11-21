@@ -97,18 +97,36 @@ public class Card implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (o == null || getClass() != o.getClass()) { return false; }
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Card card = (Card) o;
 
-        if (isSent != card.isSent) { return false; }
-        if (year != card.year) { return false; }
-        if (id != null ? !id.equals(card.id) : card.id != null) { return false; }
-        if (country != null ? !country.equals(card.country) : card.country != null) { return false; }
-        if (authors != null ? !authors.equals(card.authors) : card.authors != null) { return false; }
-        if (theme != card.theme) { return false; }
-        if (valuable != card.valuable) { return false; }
+        if (isSent != card.isSent) {
+            return false;
+        }
+        if (year != card.year) {
+            return false;
+        }
+        if (id != null ? !id.equals(card.id) : card.id != null) {
+            return false;
+        }
+        if (country != null ? !country.equals(card.country) : card.country != null) {
+            return false;
+        }
+        if (authors != null ? !authors.equals(card.authors) : card.authors != null) {
+            return false;
+        }
+        if (theme != card.theme) {
+            return false;
+        }
+        if (valuable != card.valuable) {
+            return false;
+        }
         return type == card.type;
     }
 
@@ -128,6 +146,6 @@ public class Card implements Serializable {
     @Override
     public String toString() {
         return getClass().getName() + "[id=" + id + ", isSent=" + isSent + ", country=" + country + ", year=" + year
-                + ", authors=" + authors + ", theme=" + theme + ", valuable=" + valuable + ", type=" + type + ']';
+                + ", authors=" + authors + ", isAuthorKnown=" + isAuthorKnown + ", theme=" + theme + ", valuable=" + valuable + ", type=" + type + ']';
     }
 }
