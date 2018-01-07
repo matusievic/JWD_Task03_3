@@ -25,6 +25,7 @@
 
 
 
+    <!-- Authors definition-->
 
     <simpleType name="Name">
         <restriction base="string">
@@ -32,11 +33,20 @@
         </restriction>
     </simpleType>
 
-    <complexType name="Person">
+    <complexType name="PersonName">
         <sequence>
             <element name="name" type="tns:Name"/>
-            <element name="surname" type="tns:Name"/>
         </sequence>
+    </complexType>
+
+    <complexType name="Person">
+        <complexContent>
+            <extension base="tns:PersonName">
+                <sequence>
+                    <element name="surname" type="tns:Name"/>
+                </sequence>
+            </extension>
+        </complexContent>
     </complexType>
 
     <complexType name="Authors">
@@ -46,6 +56,7 @@
         <attribute name="isKnown" type="boolean" use="required"/>
     </complexType>
 
+    <!--The end of authors definition-->
 
 
 
