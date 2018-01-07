@@ -1,6 +1,7 @@
-package by.tc.dao.builder.impl;
+package by.tc.dao.parser.impl;
 
-import by.tc.dao.builder.CardsBuilder;
+import by.tc.dao.builder.CardBuilder;
+import by.tc.dao.parser.CardsParser;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Author;
 import by.tc.entity.Card;
@@ -20,9 +21,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This is a CardsBuilder class implementation for the DOM parser
+ * This is a CardsParser class implementation for the DOM parser
  */
-public class CardsDOMBuilder implements CardsBuilder {
+public class CardsDOMParser implements CardsParser {
     private List<Card> cards;
     private DOMParser paser;
     private Document document;
@@ -31,7 +32,7 @@ public class CardsDOMBuilder implements CardsBuilder {
     private static Logger logger = Logger.getLogger("log4j");
 
     @Override
-    public void buildCards(String file) throws DAOException {
+    public void parse(String file) throws DAOException {
         try {
             paser = new DOMParser();
             paser.parse(file);
@@ -39,23 +40,25 @@ public class CardsDOMBuilder implements CardsBuilder {
             logger.log(Level.WARNING, "Exception: " + e.getMessage());
             throw new DAOException(e);
         }
+
         document = paser.getDocument();
         logger.log(Level.INFO, "Parser started");
         root = document.getDocumentElement();
         logger.log(Level.INFO, "Root received");
         cards = new ArrayList<>();
         nodes = root.getElementsByTagName("card");
+
         for (int i = 0; i < nodes.getLength(); i++) {
             logger.log(Level.INFO, "CARD READING STARTED");
-            Card card = new Card();
+            CardBuilder card = new CardBuilder();
             Element currentElement = (Element) nodes.item(i);
-            card.setId(currentElement.getAttribute("id"));
+            card.id(currentElement.getAttribute("id"));
             logger.log(Level.INFO, "Card -> id read");
-            card.setWasSent(Boolean.parseBoolean(currentElement.getAttribute("isSent")));
+            card.sent(Boolean.parseBoolean(currentElement.getAttribute("isSent")));
             logger.log(Level.INFO, "Card -> isSent read");
-            card.setCountry(getSingleChildValue(currentElement, "country"));
+            card.country(getSingleChildValue(currentElement, "country"));
             logger.log(Level.INFO, "Card -> country read");
-            card.setYear(Integer.parseInt(getSingleChildValue(currentElement, "year")));
+            card.year(Integer.parseInt(getSingleChildValue(currentElement, "year")));
             logger.log(Level.INFO, "Card -> year read");
             NodeList authorNodes = currentElement.getElementsByTagName("authors");
             logger.log(Level.INFO, "Card -> authors received");
@@ -69,18 +72,19 @@ public class CardsDOMBuilder implements CardsBuilder {
                 logger.log(Level.INFO, "Card -> Author -> surname read");
                 authors.add(author);
             }
-            card.setAuthors(authors);
+
+            card.authors(authors);
             if (authorNodes.getLength() > 0) {
-                card.setAuthorKnown(Boolean.parseBoolean(getSingleChild(currentElement, "authors").getAttribute("isKnown")));
+                card.hasAuthor(Boolean.parseBoolean(getSingleChild(currentElement, "authors").getAttribute("isKnown")));
                 logger.log(Level.INFO, "Card -> isKnown read");
             }
-            card.setTheme(Theme.valueOf(getSingleChildValue(currentElement, "theme").toUpperCase()));
+            card.theme(Theme.valueOf(getSingleChildValue(currentElement, "theme").toUpperCase()));
                 logger.log(Level.INFO, "Card -> theme read");
-            card.setValuable(Valuable.valueOf(getSingleChildValue(currentElement, "valuable").toUpperCase()));
+            card.valuable(Valuable.valueOf(getSingleChildValue(currentElement, "valuable").toUpperCase()));
                 logger.log(Level.INFO, "Card -> valuable read");
-            card.setType(Type.valueOf(getSingleChildValue(currentElement, "type").toUpperCase()));
+            card.type(Type.valueOf(getSingleChildValue(currentElement, "type").toUpperCase()));
             logger.log(Level.INFO, "Card -> type read");
-            cards.add(card);
+            cards.add(card.build());
             logger.log(Level.INFO, "CARD READING ENDED");
         }
     }

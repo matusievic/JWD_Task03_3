@@ -1,6 +1,7 @@
-package by.tc.dao.builder.impl;
+package by.tc.dao.parser.impl;
 
-import by.tc.dao.builder.CardsBuilder;
+import by.tc.dao.builder.CardBuilder;
+import by.tc.dao.parser.CardsParser;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Author;
 import by.tc.entity.Card;
@@ -21,19 +22,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This is a CardsBuilder class implementation for the StAX parser
+ * This is a CardsParser class implementation for the StAX parser
  */
-public class CardsStAXBuilder implements CardsBuilder {
+public class CardsStAXParser implements CardsParser {
     private List<Card> cards = new ArrayList<>();
     private XMLStreamReader reader;
     private static Logger logger = Logger.getLogger("log4j");
-    private Card currentCard;
+    private CardBuilder currentCard;
     private CardParams currentElement;
     private List<Author> authors;
     private Author currentAuthor;
 
     @Override
-    public void buildCards(String file) throws DAOException {
+    public void parse(String file) throws DAOException {
         try {
             reader = new XMLStreamReaderImpl(new FileInputStream(file), new PropertyManager(PropertyManager.CONTEXT_READER));
             logger.log(Level.INFO, "Parsing started");
@@ -70,20 +71,20 @@ public class CardsStAXBuilder implements CardsBuilder {
         currentElement = CardParams.valueOf(reader.getLocalName().toUpperCase().replace(':', '_'));
         switch (currentElement) {
             case CARD:
-                currentCard = new Card();
-                currentCard.setId(reader.getAttributeValue("", "id"));
+                currentCard = new CardBuilder();
+                currentCard.id(reader.getAttributeValue("", "id"));
                 if (reader.getAttributeCount() == 2) {
-                    currentCard.setWasSent(Boolean.parseBoolean(reader.getAttributeValue("", "isSent")));
+                    currentCard.sent(Boolean.parseBoolean(reader.getAttributeValue("", "isSent")));
                 }
                 break;
             case AUTHORS:
                 authors = new ArrayList<>();
-                currentCard.setAuthorKnown(Boolean.parseBoolean(reader.getAttributeValue("", "isKnown")));
+                currentCard.hasAuthor(Boolean.parseBoolean(reader.getAttributeValue("", "isKnown")));
                 break;
             case AUTHOR:
                 currentAuthor = new Author();
                 if (reader.getAttributeCount() == 1) {
-                    currentCard.setAuthorKnown(Boolean.parseBoolean(reader.getAttributeValue("", "isSent")));
+                    currentCard.hasAuthor(Boolean.parseBoolean(reader.getAttributeValue("", "isSent")));
                 }
                 break;
         }
@@ -99,10 +100,10 @@ public class CardsStAXBuilder implements CardsBuilder {
 
         switch (currentElement) {
             case COUNTRY:
-                currentCard.setCountry(value);
+                currentCard.country(value);
                 break;
             case YEAR:
-                currentCard.setYear(Integer.parseInt(value));
+                currentCard.year(Integer.parseInt(value));
                 break;
             case NAME:
                 currentAuthor.setName(value);
@@ -111,13 +112,13 @@ public class CardsStAXBuilder implements CardsBuilder {
                 currentAuthor.setSurname(value);
                 break;
             case THEME:
-                currentCard.setTheme(Theme.valueOf(value.toUpperCase()));
+                currentCard.theme(Theme.valueOf(value.toUpperCase()));
                 break;
             case VALUABLE:
-                currentCard.setValuable(Valuable.valueOf(value.toUpperCase()));
+                currentCard.valuable(Valuable.valueOf(value.toUpperCase()));
                 break;
             case TYPE:
-                currentCard.setType(Type.valueOf(value.toUpperCase()));
+                currentCard.type(Type.valueOf(value.toUpperCase()));
         }
     }
 
@@ -129,10 +130,10 @@ public class CardsStAXBuilder implements CardsBuilder {
                 authors.add(currentAuthor);
                 break;
             case AUTHORS:
-                currentCard.setAuthors(authors);
+                currentCard.authors(authors);
                 break;
             case CARD:
-                cards.add(currentCard);
+                cards.add(currentCard.build());
                 break;
         }
     }

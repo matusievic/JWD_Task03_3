@@ -1,9 +1,9 @@
-package by.tc.dao.builder;
+package by.tc.dao.parser;
 
 import by.tc.dao.CardsProvider;
-import by.tc.dao.builder.impl.CardsDOMBuilder;
-import by.tc.dao.builder.impl.CardsSAXBuilder;
-import by.tc.dao.builder.impl.CardsStAXBuilder;
+import by.tc.dao.parser.impl.CardsDOMParser;
+import by.tc.dao.parser.impl.CardsSAXParser;
+import by.tc.dao.parser.impl.CardsStAXParser;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Author;
 import by.tc.entity.Card;
@@ -27,7 +27,7 @@ class CardsProviderTest {
         //CARD #1
         Card card = new Card();
         card.setId("ID-0");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Belarus");
         card.setYear(1993);
         List<Author> authors = new ArrayList<>();
@@ -35,7 +35,7 @@ class CardsProviderTest {
         author.setName("Mikita");
         author.setSurname("Jurevic");
         authors.add(author);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setAuthors(authors);
         card.setTheme(Theme.ARCHITECTURE);
         card.setValuable(Valuable.COLLECTIBLE);
@@ -45,11 +45,11 @@ class CardsProviderTest {
         //CARD #2
         card = new Card();
         card.setId("ID-1");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Lithuania");
         card.setYear(2003);
         card.setAuthors(new ArrayList<Author>());
-        card.setAuthorKnown(false);
+        card.setHasAuthor(false);
         card.setTheme(Theme.ARCHITECTURE);
         card.setValuable(Valuable.THEMATIC);
         card.setType(Type.CONGRATULATORY);
@@ -58,7 +58,7 @@ class CardsProviderTest {
         //CARD #3
         card = new Card();
         card.setId("ID-2");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Finland");
         card.setYear(1998);
         authors = new ArrayList<>();
@@ -67,7 +67,7 @@ class CardsProviderTest {
         author.setSurname("Makarainen");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.CITY);
         card.setValuable(Valuable.THEMATIC);
         card.setType(Type.PROMOTIONAL);
@@ -76,7 +76,7 @@ class CardsProviderTest {
         //CARD #4
         card = new Card();
         card.setId("ID-3");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Belarus");
         card.setYear(2008);
         authors = new ArrayList<>();
@@ -85,7 +85,7 @@ class CardsProviderTest {
         author.setSurname("Kuzmienka");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.SPORT);
         card.setValuable(Valuable.THEMATIC);
         card.setType(Type.PROMOTIONAL);
@@ -94,7 +94,7 @@ class CardsProviderTest {
         //CARD #5
         card = new Card();
         card.setId("ID-4");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("UK");
         card.setYear(2003);
         authors = new ArrayList<>();
@@ -103,7 +103,7 @@ class CardsProviderTest {
         author.setSurname("Shakespeare");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.ARCHITECTURE);
         card.setValuable(Valuable.COLLECTIBLE);
         card.setType(Type.CONGRATULATORY);
@@ -112,7 +112,7 @@ class CardsProviderTest {
         //CARD #6
         card = new Card();
         card.setId("ID-5");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Poland");
         card.setYear(2012);
         authors = new ArrayList<>();
@@ -121,7 +121,7 @@ class CardsProviderTest {
         author.setSurname("Wozniak");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.NATURE);
         card.setValuable(Valuable.COLLECTIBLE);
         card.setType(Type.ORDINARY);
@@ -130,7 +130,7 @@ class CardsProviderTest {
         //CARD #7
         card = new Card();
         card.setId("ID-6");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("USA");
         card.setYear(1992);
         authors = new ArrayList<>();
@@ -139,7 +139,7 @@ class CardsProviderTest {
         author.setSurname("Doe");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.RELIGION);
         card.setValuable(Valuable.COLLECTIBLE);
         card.setType(Type.ORDINARY);
@@ -148,7 +148,7 @@ class CardsProviderTest {
         //CARD #8
         card = new Card();
         card.setId("ID-7");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("BSSR");
         card.setYear(1932);
         authors = new ArrayList<>();
@@ -157,7 +157,7 @@ class CardsProviderTest {
         author.setSurname("Mickievic");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.CITY);
         card.setValuable(Valuable.HISTORICAL);
         card.setType(Type.ORDINARY);
@@ -166,7 +166,7 @@ class CardsProviderTest {
         //CARD #9
         card = new Card();
         card.setId("ID-8");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Latvia");
         card.setYear(2001);
         authors = new ArrayList<>();
@@ -175,7 +175,7 @@ class CardsProviderTest {
         author.setSurname("Shnarskis");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.CITY);
         card.setValuable(Valuable.COLLECTIBLE);
         card.setType(Type.CONGRATULATORY);
@@ -184,7 +184,7 @@ class CardsProviderTest {
         //CARD #10
         card = new Card();
         card.setId("ID-9");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Norway");
         card.setYear(1901);
         authors = new ArrayList<>();
@@ -193,7 +193,7 @@ class CardsProviderTest {
         author.setSurname("Bjorndalen");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.NATURE);
         card.setValuable(Valuable.HISTORICAL);
         card.setType(Type.ORDINARY);
@@ -202,7 +202,7 @@ class CardsProviderTest {
         //CARD #11
         card = new Card();
         card.setId("ID-10");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Belarus");
         card.setYear(1992);
         authors = new ArrayList<>();
@@ -211,7 +211,7 @@ class CardsProviderTest {
         author.setSurname("Zakreuski");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.RELIGION);
         card.setValuable(Valuable.COLLECTIBLE);
         card.setType(Type.ORDINARY);
@@ -220,7 +220,7 @@ class CardsProviderTest {
         //CARD #12
         card = new Card();
         card.setId("ID-11");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("BSSR");
         card.setYear(1927);
         authors = new ArrayList<>();
@@ -229,7 +229,7 @@ class CardsProviderTest {
         author.setSurname("Kolas");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.ARCHITECTURE);
         card.setValuable(Valuable.HISTORICAL);
         card.setType(Type.ORDINARY);
@@ -238,7 +238,7 @@ class CardsProviderTest {
         //CARD #13
         card = new Card();
         card.setId("ID-12");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Estonia");
         card.setYear(2000);
         authors = new ArrayList<>();
@@ -247,7 +247,7 @@ class CardsProviderTest {
         author.setSurname("Harma");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.ARCHITECTURE);
         card.setValuable(Valuable.COLLECTIBLE);
         card.setType(Type.PROMOTIONAL);
@@ -256,7 +256,7 @@ class CardsProviderTest {
         //CARD #14
         card = new Card();
         card.setId("ID-13");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("BSSR");
         card.setYear(1955);
         authors = new ArrayList<>();
@@ -265,7 +265,7 @@ class CardsProviderTest {
         author.setSurname("Davydzionak");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.NATURE);
         card.setValuable(Valuable.HISTORICAL);
         card.setType(Type.ORDINARY);
@@ -274,7 +274,7 @@ class CardsProviderTest {
         //CARD #15
         card = new Card();
         card.setId("ID-14");
-        card.setWasSent(false);
+        card.setSent(false);
         card.setCountry("Germany");
         card.setYear(2009);
         authors = new ArrayList<>();
@@ -283,7 +283,7 @@ class CardsProviderTest {
         author.setSurname("Noiner");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.NATURE);
         card.setValuable(Valuable.THEMATIC);
         card.setType(Type.PROMOTIONAL);
@@ -292,7 +292,7 @@ class CardsProviderTest {
         //CARD #16
         card = new Card();
         card.setId("ID-15");
-        card.setWasSent(true);
+        card.setSent(true);
         card.setCountry("Belarus");
         card.setYear(2012);
         authors = new ArrayList<>();
@@ -301,7 +301,7 @@ class CardsProviderTest {
         author.setSurname("Dubarezava");
         authors.add(author);
         card.setAuthors(authors);
-        card.setAuthorKnown(true);
+        card.setHasAuthor(true);
         card.setTheme(Theme.ARCHITECTURE);
         card.setValuable(Valuable.THEMATIC);
         card.setType(Type.ORDINARY);
@@ -312,7 +312,7 @@ class CardsProviderTest {
     void createCardsUsingSAX() {
         List<Card> actual = null;
         try {
-            actual = CardsProvider.createCards(new CardsSAXBuilder(), "src/main/resources/xml/oldcards.xml");
+            actual = CardsProvider.createCards(new CardsSAXParser(), "src/main/resources/xml/oldcards.xml");
         } catch (DAOException e) {
             System.out.println("Exception: " + e.getMessage());
         }
@@ -323,7 +323,7 @@ class CardsProviderTest {
     void createCardsUsingStAX() {
         List<Card> actual = null;
         try {
-            actual = CardsProvider.createCards(new CardsStAXBuilder(), "src/main/resources/xml/oldcards.xml");
+            actual = CardsProvider.createCards(new CardsStAXParser(), "src/main/resources/xml/oldcards.xml");
         } catch (DAOException e) {
             System.out.println("Exception: " + e.getMessage());
         }
@@ -334,7 +334,7 @@ class CardsProviderTest {
     void createCardsUsingDOM() {
         List<Card> actual = null;
         try {
-            actual = CardsProvider.createCards(new CardsDOMBuilder(), "src/main/resources/xml/oldcards.xml");
+            actual = CardsProvider.createCards(new CardsDOMParser(), "src/main/resources/xml/oldcards.xml");
         } catch (DAOException e) {
             System.out.println("Exception: " + e.getMessage());
         }

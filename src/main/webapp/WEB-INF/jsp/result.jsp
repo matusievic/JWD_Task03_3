@@ -8,7 +8,7 @@
 <table border="1" cellpadding="5" cellspacing="5">
     <tr>
         <td>id</td>
-        <td>is wasSent</td>
+        <td>is sent</td>
         <td>country</td>
         <td>year</td>
         <td>authors</td>
@@ -20,7 +20,7 @@
     <c:forEach var="card" items="${cardList}">
         <tr>
             <td><c:out value="${card.id}"/></td>
-            <td><c:out value="${card.wasSent}"/></td>
+            <td><c:out value="${card.sent}"/></td>
             <td><c:out value="${card.country}"/></td>
             <td><c:out value="${card.year}"/></td>
             <td>
@@ -28,7 +28,7 @@
                     <c:out value="${author.name} ${author.surname}"/><br>
                 </c:forEach>
             </td>
-            <td><c:out value="${card.authorKnown}"/></td>
+            <td><c:out value="${card.hasAuthor}"/></td>
             <td><c:out value="${card.theme}"/></td>
             <td><c:out value="${card.valuable}"/></td>
             <td><c:out value="${card.type}"/></td>

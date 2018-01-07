@@ -3,7 +3,7 @@ package by.tc.service.impl;
 import by.tc.dao.CardsProvider;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Card;
-import by.tc.service.CardsBuilderProvider;
+import by.tc.service.CardsParserProvider;
 import by.tc.service.XMLService;
 import by.tc.service.exception.ServiceException;
 
@@ -14,7 +14,7 @@ public class XMLServiceImpl implements XMLService {
     @Override
     public List<Card> parse(String parser, String file) throws ServiceException {
         try {
-            cards = CardsProvider.createCards(CardsBuilderProvider.getBuilder(parser), file);
+            cards = CardsProvider.createCards(CardsParserProvider.getParser(parser), file);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

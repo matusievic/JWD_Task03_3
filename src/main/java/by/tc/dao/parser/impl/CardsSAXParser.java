@@ -1,6 +1,7 @@
-package by.tc.dao.builder.impl;
+package by.tc.dao.parser.impl;
 
-import by.tc.dao.builder.CardsBuilder;
+import by.tc.dao.builder.CardBuilder;
+import by.tc.dao.parser.CardsParser;
 import by.tc.dao.exception.DAOException;
 import by.tc.entity.Author;
 import by.tc.entity.Card;
@@ -22,15 +23,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This is a CardsBuilder class implementation for the SAX parser
+ * This is a CardsParser class implementation for the SAX parser
  */
-public class CardsSAXBuilder implements CardsBuilder {
+public class CardsSAXParser implements CardsParser {
     private List<Card> cards = new ArrayList<>();
     private CardsHandler ch;
     private XMLReader reader;
-    private static Logger logger = Logger.getLogger("log4j");
+    private static final Logger logger = Logger.getLogger("log4j");
 
-    public CardsSAXBuilder() {
+    public CardsSAXParser() {
+        logger.setLevel(Level.OFF);
         ch = new CardsHandler();
         try {
             reader = XMLReaderFactory.createXMLReader();
@@ -41,7 +43,7 @@ public class CardsSAXBuilder implements CardsBuilder {
     }
 
     @Override
-    public void buildCards(String file) throws DAOException {
+    public void parse(String file) throws DAOException {
         try {
             reader.parse(new InputSource(file));
         } catch (SAXException | IOException e) {
@@ -62,7 +64,7 @@ public class CardsSAXBuilder implements CardsBuilder {
      */
     static class CardsHandler extends DefaultHandler {
         private List<Card> cards = new ArrayList<>();
-        private Card currentCard;
+        private CardBuilder currentCard;
         private StringBuilder buffer;
         private List<Author> authors;
         private Author currentAuthor;
@@ -84,20 +86,20 @@ public class CardsSAXBuilder implements CardsBuilder {
             buffer = new StringBuilder();
             switch (param) {
                 case CARD:
-                    currentCard = new Card();
-                    currentCard.setId(attributes.getValue("id"));
+                    currentCard = new CardBuilder();
+                    currentCard.id(attributes.getValue("id"));
                     if (attributes.getLength() == 2) {
-                        currentCard.setWasSent(Boolean.parseBoolean(attributes.getValue("isSent")));
+                        currentCard.sent(Boolean.parseBoolean(attributes.getValue("isSent")));
                     }
                     break;
                 case AUTHORS:
                     authors = new ArrayList<>();
-                    currentCard.setAuthorKnown(Boolean.parseBoolean(attributes.getValue("isKnown")));
+                    currentCard.hasAuthor(Boolean.parseBoolean(attributes.getValue("isKnown")));
                     break;
                 case AUTHOR:
                     currentAuthor = new Author();
                     if (attributes.getLength() == 1) {
-                        currentCard.setAuthorKnown(Boolean.parseBoolean(attributes.getValue("isSent")));
+                        currentCard.hasAuthor(Boolean.parseBoolean(attributes.getValue("isSent")));
                     }
                     break;
             }
@@ -116,16 +118,16 @@ public class CardsSAXBuilder implements CardsBuilder {
             CardParams param = CardParams.valueOf(qName.toUpperCase().replace(':', '_'));
             switch (param) {
                 case CARD:
-                    cards.add(currentCard);
+                    cards.add(currentCard.build());
                     break;
                 case COUNTRY:
-                    currentCard.setCountry(buffer.toString());
+                    currentCard.country(buffer.toString());
                     break;
                 case YEAR:
-                    currentCard.setYear(Integer.parseInt(buffer.toString()));
+                    currentCard.year(Integer.parseInt(buffer.toString()));
                     break;
                 case AUTHORS:
-                    currentCard.setAuthors(authors);
+                    currentCard.authors(authors);
                     break;
                 case AUTHOR:
                     authors.add(currentAuthor);
@@ -137,13 +139,13 @@ public class CardsSAXBuilder implements CardsBuilder {
                     currentAuthor.setSurname(buffer.toString());
                     break;
                 case THEME:
-                    currentCard.setTheme(Theme.valueOf(buffer.toString().toUpperCase()));
+                    currentCard.theme(Theme.valueOf(buffer.toString().toUpperCase()));
                     break;
                 case VALUABLE:
-                    currentCard.setValuable(Valuable.valueOf(buffer.toString().toUpperCase()));
+                    currentCard.valuable(Valuable.valueOf(buffer.toString().toUpperCase()));
                     break;
                 case TYPE:
-                    currentCard.setType(Type.valueOf(buffer.toString().toUpperCase()));
+                    currentCard.type(Type.valueOf(buffer.toString().toUpperCase()));
             }
         }
 

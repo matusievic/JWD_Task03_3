@@ -11,11 +11,11 @@ import java.util.List;
 public class Card implements Serializable {
     private static final long serialVersionUID = 3949634838122577255L;
     private String id;
-    private boolean wasSent;
+    private boolean sent;
     private String country;
     private int year;
     private List<Author> authors = new ArrayList<>();
-    private boolean authorKnown;
+    private boolean hasAuthor;
     private Theme theme;
     private Valuable valuable;
     private Type type;
@@ -31,12 +31,12 @@ public class Card implements Serializable {
         this.id = id;
     }
 
-    public boolean isWasSent() {
-        return wasSent;
+    public boolean isSent() {
+        return sent;
     }
 
-    public void setWasSent(boolean wasSent) {
-        this.wasSent = wasSent;
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 
     public String getCountry() {
@@ -63,12 +63,12 @@ public class Card implements Serializable {
         this.authors = authors;
     }
 
-    public boolean isAuthorKnown() {
-        return authorKnown;
+    public boolean isHasAuthor() {
+        return hasAuthor;
     }
 
-    public void setAuthorKnown(boolean authorKnown) {
-        this.authorKnown = authorKnown;
+    public void setHasAuthor(boolean hasAuthor) {
+        this.hasAuthor = hasAuthor;
     }
 
     public Theme getTheme() {
@@ -102,9 +102,9 @@ public class Card implements Serializable {
 
         Card card = (Card) obj;
 
-        if (wasSent != card.wasSent) { return false; }
+        if (sent != card.sent) { return false; }
         if (year != card.year) { return false; }
-        if (authorKnown != card.authorKnown) { return false; }
+        if (hasAuthor != card.hasAuthor) { return false; }
         if (id != null ? !id.equals(card.id) : card.id != null) { return false; }
         if (country != null ? !country.equals(card.country) : card.country != null) { return false; }
         if (authors != null ? !authors.equals(card.authors) : card.authors != null) { return false; }
@@ -116,11 +116,11 @@ public class Card implements Serializable {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (wasSent ? 1 : 0);
+        result = 31 * result + (sent ? 1 : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + year;
         result = 31 * result + (authors != null ? authors.hashCode() : 0);
-        result = 31 * result + (authorKnown ? 1 : 0);
+        result = 31 * result + (hasAuthor ? 1 : 0);
         result = 31 * result + (theme != null ? theme.hashCode() : 0);
         result = 31 * result + (valuable != null ? valuable.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
@@ -129,7 +129,7 @@ public class Card implements Serializable {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[id=" + id + ", wasSent=" + wasSent + ", country=" + country + ", year=" + year
-                + ", authors=" + authors + ", authorKnown=" + authorKnown + ", theme=" + theme + ", valuable=" + valuable + ", type=" + type + ']';
+        return getClass().getName() + "[id=" + id + ", sent=" + sent + ", country=" + country + ", year=" + year
+                + ", authors=" + authors + ", hasAuthor=" + hasAuthor + ", theme=" + theme + ", valuable=" + valuable + ", type=" + type + ']';
     }
 }
