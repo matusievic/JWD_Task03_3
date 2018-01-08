@@ -34,6 +34,7 @@ class CardsProviderTest {
         Author author = new Author();
         author.setName("Mikita");
         author.setSurname("Jurevic");
+        author.setSalary(2);
         authors.add(author);
         card.setHasAuthor(true);
         card.setAuthors(authors);
@@ -65,6 +66,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("John");
         author.setSurname("Makarainen");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -83,6 +85,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Dzmitryj");
         author.setSurname("Kuzmienka");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -101,6 +104,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Mike");
         author.setSurname("Shakespeare");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -119,6 +123,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Kasia");
         author.setSurname("Wozniak");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -137,6 +142,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("John");
         author.setSurname("Doe");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -155,6 +161,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Vasil");
         author.setSurname("Mickievic");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -173,6 +180,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Andris");
         author.setSurname("Shnarskis");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -191,6 +199,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Eric");
         author.setSurname("Bjorndalen");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -209,6 +218,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Valiancin");
         author.setSurname("Zakreuski");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -227,6 +237,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Jakub");
         author.setSurname("Kolas");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -245,6 +256,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Lena");
         author.setSurname("Harma");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -263,6 +275,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Kastus");
         author.setSurname("Davydzionak");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -281,6 +294,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Magdalena");
         author.setSurname("Noiner");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);
@@ -299,6 +313,7 @@ class CardsProviderTest {
         author = new Author();
         author.setName("Anastasia");
         author.setSurname("Dubarezava");
+        author.setSalary(1);
         authors.add(author);
         card.setAuthors(authors);
         card.setHasAuthor(true);

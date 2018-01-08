@@ -33,17 +33,18 @@
         </restriction>
     </simpleType>
 
-    <complexType name="PersonName">
+    <complexType name="Person">
         <sequence>
             <element name="name" type="tns:Name"/>
+            <element name="surname" type="tns:Name"/>
         </sequence>
     </complexType>
 
-    <complexType name="Person">
+    <complexType name="Author">
         <complexContent>
-            <extension base="tns:PersonName">
+            <extension base="tns:Person">
                 <sequence>
-                    <element name="surname" type="tns:Name"/>
+                    <element name="salary" type="float"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -51,7 +52,7 @@
 
     <complexType name="Authors">
         <sequence>
-            <element name="author" type="tns:Person" minOccurs="1" maxOccurs="unbounded"/>
+            <element name="author" type="tns:Author" minOccurs="1" maxOccurs="unbounded"/>
         </sequence>
         <attribute name="isKnown" type="boolean" use="required"/>
     </complexType>

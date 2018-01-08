@@ -69,6 +69,7 @@ public class CardsDOMParser implements CardsParser {
                 logger.info("Card -> Author -> name read");
                 author.setSurname(getSingleChildValue(currentElement, "surname"));
                 logger.info("Card -> Author -> surname read");
+                author.setSalary(Float.parseFloat(getSingleChildValue(currentElement, "salary")));
                 authors.add(author);
             }
 

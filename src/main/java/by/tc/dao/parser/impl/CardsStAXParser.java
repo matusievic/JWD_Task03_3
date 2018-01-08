@@ -110,6 +110,9 @@ public class CardsStAXParser implements CardsParser {
             case SURNAME:
                 currentAuthor.setSurname(value);
                 break;
+            case SALARY:
+                currentAuthor.setSalary(Float.parseFloat(value));
+                break;
             case THEME:
                 currentCard.theme(Theme.valueOf(value.toUpperCase()));
                 break;

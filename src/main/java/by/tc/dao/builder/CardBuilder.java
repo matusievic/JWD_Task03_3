@@ -81,5 +81,7 @@ public final class CardBuilder {
         card.setType(type);
 
         return card;
+
+        new CardBuilder().id("ID-0").hasAuthor(true).build();
     }
 }

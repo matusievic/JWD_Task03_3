@@ -136,6 +136,9 @@ public class CardsSAXParser implements CardsParser {
                 case SURNAME:
                     currentAuthor.setSurname(buffer.toString());
                     break;
+                case SALARY:
+                    currentAuthor.setSalary(Float.parseFloat(buffer.toString()));
+                    break;
                 case THEME:
                     currentCard.theme(Theme.valueOf(buffer.toString().toUpperCase()));
                     break;
