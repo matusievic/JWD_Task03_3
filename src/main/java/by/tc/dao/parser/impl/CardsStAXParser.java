@@ -10,6 +10,7 @@ import by.tc.entity.enums.Type;
 import by.tc.entity.enums.Valuable;
 import com.sun.org.apache.xerces.internal.impl.PropertyManager;
 import com.sun.org.apache.xerces.internal.impl.XMLStreamReaderImpl;
+import org.apache.log4j.Logger;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -18,8 +19,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This is a CardsParser class implementation for the StAX parser
@@ -27,7 +26,7 @@ import java.util.logging.Logger;
 public class CardsStAXParser implements CardsParser {
     private List<Card> cards = new ArrayList<>();
     private XMLStreamReader reader;
-    private static Logger logger = Logger.getLogger("log4j");
+    private static final Logger logger = Logger.getLogger("log4j");
     private CardBuilder currentCard;
     private CardParams currentElement;
     private List<Author> authors;
@@ -37,11 +36,11 @@ public class CardsStAXParser implements CardsParser {
     public void parse(String file) throws DAOException {
         try {
             reader = new XMLStreamReaderImpl(new FileInputStream(file), new PropertyManager(PropertyManager.CONTEXT_READER));
-            logger.log(Level.INFO, "Parsing started");
+            logger.info("Parsing started");
             process(reader);
-            logger.log(Level.INFO, "Parsing ended");
+            logger.info("Parsing ended");
         } catch (FileNotFoundException | XMLStreamException e) {
-            logger.log(Level.WARNING, "Exception: " + e.getMessage());
+            logger.error("Exception: " + e.getMessage());
             throw new DAOException(e);
         }
     }
@@ -51,15 +50,15 @@ public class CardsStAXParser implements CardsParser {
             int type = reader.next();
             switch (type) {
                 case XMLStreamConstants.START_ELEMENT:
-                    logger.log(Level.INFO, "START ELEMENT -> " + reader.getLocalName());
+                    logger.info("START ELEMENT -> " + reader.getLocalName());
                     processStartElement();
                     break;
                 case XMLStreamConstants.CHARACTERS:
-                    logger.log(Level.INFO, "CHARACTERS    -> " + reader.getText().trim());
+                    logger.info("CHARACTERS    -> " + reader.getText().trim());
                     processCharacters();
                     break;
                 case XMLStreamConstants.END_ELEMENT:
-                    logger.log(Level.INFO, "END ELEMENT   -> " + reader.getLocalName());
+                    logger.info("END ELEMENT   -> " + reader.getLocalName());
                     processEndElement();
                     break;
             }
